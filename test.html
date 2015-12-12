@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<style type="text/css">
+		td {
+			width: 50px;
+			height: 50px;
+			background-color: blue;
+		}
+		table {
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+
+Please open in Firefox, this will not work on Chrome due to Cross origin issues. [Or run through a local server to get around the issue.]
+
+<table id="mainTable">
+<tr><th>A</th><th>B</th></tr>
+<tr><td>a</td><td>a</td></tr>
+<tr><td>a</td><td>a</td></tr>
+</table>
+
+
+
+</body>
+<script type="text/javascript">
+	$( document ).ready(function() {
+	    console.log( "ready!" );
+	    //import json file
+
+	    $.ajax({
+	    	url: "rows.json",
+	    	type: "GET",
+	    	dataType: "json",
+	    	success: function(json) {
+	    		console.log(json);
+	    		jsonReturned = JSON.stringify(json);
+	    		$("<div>").text(jsonReturned).appendTo("body");
+	    	},
+	    	error: function(xhr, status, errorThrown) {
+	    		console.log('there was a problem');
+	    		console.log(status + errorThrown);
+	    		console.dir(xhr);
+	    	},
+	    	complete: function(xhr, status) {
+	    		console.log('The request is complete!');
+	    	}
+	    });
+
+		function appendTable (tableRow) {
+		};
+
+		$('td').click(function () {
+			$(this).css("background-color", "purple");
+			clone = $(this);
+			clone.appendTo();
+			$(this).detach();
+			console.log("clicked on a td");
+			// body...
+		});
+
+		// function function_name (argument) {
+		// 	// body...
+		// }();
+
+	});
+</script>
+</html>

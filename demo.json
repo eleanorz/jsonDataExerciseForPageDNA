@@ -1,0 +1,137 @@
+[
+  {
+    "_id": "566b25ba7f921bcbd93956d7",
+    "index": 0,
+    "guid": "903f7f36-8780-4f1a-ad60-bb38c67b895b",
+    "isActive": true,
+    "balance": "$2,208.87",
+    "picture": "http://placehold.it/32x32",
+    "age": 30,
+    "eyeColor": "blue",
+    "name": "Powers Albert",
+    "gender": "male",
+    "company": "ZAPPIX",
+    "email": "powersalbert@zappix.com",
+    "phone": "+1 (963) 431-2257",
+    "address": "995 Ditmas Avenue, Freetown, Mississippi, 2806",
+    "about": "Consectetur ut occaecat veniam mollit eiusmod fugiat anim eiusmod. Laboris nostrud pariatur exercitation eu sunt ad. Laboris commodo amet nulla elit. Qui pariatur eu amet do culpa culpa do consectetur laborum.\r\n",
+    "registered": "2014-01-03T07:10:15 +08:00",
+    "latitude": -1.360507,
+    "longitude": 15.613667,
+    "tags": [
+      "ad",
+      "eu",
+      "ex",
+      "nostrud",
+      "velit",
+      "nulla",
+      "incididunt"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Mccoy Maddox"
+      },
+      {
+        "id": 1,
+        "name": "Blackburn Dunn"
+      },
+      {
+        "id": 2,
+        "name": "Barbara Orr"
+      }
+    ],
+    "greeting": "Hello, Powers Albert! You have 4 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "566b25bac36d3ca7f84c0ace",
+    "index": 1,
+    "guid": "19b8f9db-3d9a-44c2-b959-c215a3946562",
+    "isActive": false,
+    "balance": "$3,073.14",
+    "picture": "http://placehold.it/32x32",
+    "age": 30,
+    "eyeColor": "blue",
+    "name": "Marcie Torres",
+    "gender": "female",
+    "company": "ORBOID",
+    "email": "marcietorres@orboid.com",
+    "phone": "+1 (817) 600-3374",
+    "address": "367 Wortman Avenue, Brambleton, Oklahoma, 1292",
+    "about": "Nostrud id non est consectetur ad id ad Lorem sunt irure. Ex dolor irure laboris qui et nostrud occaecat. Dolore quis culpa duis voluptate nostrud mollit commodo eiusmod duis sit dolore consectetur.\r\n",
+    "registered": "2014-06-21T02:04:52 +07:00",
+    "latitude": 17.560841,
+    "longitude": 137.771664,
+    "tags": [
+      "amet",
+      "est",
+      "incididunt",
+      "esse",
+      "ut",
+      "dolor",
+      "non"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Roxanne Solomon"
+      },
+      {
+        "id": 1,
+        "name": "Cara Hamilton"
+      },
+      {
+        "id": 2,
+        "name": "Henderson Hodges"
+      }
+    ],
+    "greeting": "Hello, Marcie Torres! You have 4 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "566b25ba07576c45d3d844cf",
+    "index": 2,
+    "guid": "e5c4c8e4-21e2-4eff-ba77-3ea6469dcb46",
+    "isActive": false,
+    "balance": "$1,809.89",
+    "picture": "http://placehold.it/32x32",
+    "age": 27,
+    "eyeColor": "green",
+    "name": "Hampton Horne",
+    "gender": "male",
+    "company": "VERAQ",
+    "email": "hamptonhorne@veraq.com",
+    "phone": "+1 (890) 453-3476",
+    "address": "894 Ludlam Place, Summertown, Michigan, 8641",
+    "about": "Et amet nostrud et do dolore aliqua qui deserunt mollit elit magna. Ea do fugiat laboris cillum cillum ipsum. Aliqua occaecat aliquip elit minim. Ullamco nulla cillum amet adipisicing magna cillum in sint cillum. Fugiat aute ullamco mollit aliquip officia. Cillum duis esse mollit irure qui commodo duis ut mollit eiusmod ut.\r\n",
+    "registered": "2015-12-07T09:41:44 +08:00",
+    "latitude": -54.764633,
+    "longitude": -13.912813,
+    "tags": [
+      "culpa",
+      "irure",
+      "non",
+      "ullamco",
+      "velit",
+      "proident",
+      "aute"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Kent Oconnor"
+      },
+      {
+        "id": 1,
+        "name": "Holt Santos"
+      },
+      {
+        "id": 2,
+        "name": "Jenny Woods"
+      }
+    ],
+    "greeting": "Hello, Hampton Horne! You have 8 unread messages.",
+    "favoriteFruit": "apple"
+  }
+]
