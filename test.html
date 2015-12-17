@@ -4,13 +4,15 @@
 	<title></title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<style type="text/css">
-		td {
-			width: 50px;
-			height: 50px;
+		span {
+			width: 25px;
+			height: 25px;
+			padding-right: 20px;
 			background-color: blue;
 		}
 		table {
 			background-color: red;
+			width: 70%;
 		}
 	</style>
 </head>
@@ -18,11 +20,36 @@
 
 Please open in Firefox, this will not work on Chrome due to Cross origin issues. [Or run through a local server to get around the issue.]
 
-<table id="mainTable">
-<tr><th>A</th><th>B</th></tr>
-<tr><td>a</td><td>a</td></tr>
-<tr><td>a</td><td>a</td></tr>
-</table>
+
+<!-- <h4>Moving Boxes</h4>
+If your table has one non-header row, and starts like:
+<p>
+<table>
+<tr><th>A</th><th>B</th></tr></tr>
+<tr><td>[b][y][o][r]</td><td>&nbsp;</td></tr>
+</table> -->
+<button>test button here</button>
+
+You should be able to click [y] and [r], and end up with a row that looks like:
+
+
+<!-- <table id="mainTable">
+	<tr><th>A</th><th>B</th></tr>
+	<tr>
+		<td>
+			<span>[b]</span>
+			<span>[o]</span>
+			<span>[y]</span>
+			<span>[r]</span>
+		</td>
+		<td>
+			<span>[b]</span>
+			<span>[o]</span>
+			<span>[y]</span>
+			<span>[r]</span>
+		</td>
+	</tr>
+</table> -->
 
 
 
@@ -39,7 +66,8 @@ Please open in Firefox, this will not work on Chrome due to Cross origin issues.
 	    	success: function(json) {
 	    		console.log(json);
 	    		jsonReturned = JSON.stringify(json);
-	    		$("<div>").text(jsonReturned).appendTo("body");
+	    		console.log(jsonReturned);
+	    		createTable(json);
 	    	},
 	    	error: function(xhr, status, errorThrown) {
 	    		console.log('there was a problem');
@@ -53,15 +81,72 @@ Please open in Firefox, this will not work on Chrome due to Cross origin issues.
 
 		function appendTable (tableRow) {
 		};
+		function createTable (rawJson) {
+			// $('body').append("<table id='mainTable'><tr><th>A</th><th>B</th></tr><tr><td><span>[b]</span><span>[o]</span><span>[y]</span><span>[r]</span></td><td><span>[b]</span><span>[o]</span><span>[y]</span><span>[r]</span></td></tr></table>");
+			// $('body').append("<table><tr><th>A</th><th>B</th></tr><tr>");
+			// for (var i = rawJson.length - 1; i >= 0; i--) {
+			// 	$('body').append("<tr>");
+			// 		for (var i = 2; i >= 0; i--) {
+			// 			$('body').append("<td>")
+			// 			for (var i = rawJson[i].sequence.length - 1; i >= 0; i--) {
+			// 				$('body').append('<span>');
+			// 					$('body').append(rawJson[i].sequence[i]);
+			// 					console.log("should be a color here");
+			// 					console.log(rawJson[i].sequence[i]);
+			// 				$('body').append('</span>');
+			// 			};
+			// 			$('body').append("/<td>")
+			// 		};
+			// 	$('body').append("</tr>");
+			// 	// rawJson[i].sequence
 
-		$('td').click(function () {
-			$(this).css("background-color", "purple");
-			clone = $(this);
-			clone.appendTo();
-			$(this).detach();
-			console.log("clicked on a td");
-			// body...
+			// };
+			// console.log('successfully created table');
+			// $('body').append("</table>");
+
+			tableText = "<table><tr><th>A</th><th>B</th></tr><tr>";
+			for (var i = rawJson.length - 1; i >= 0; i--) {
+				tableText += "<tr>";
+					for (var k = 1; k >= 0; k--) {
+						tableText += "<td>";
+						for (var j = rawJson[i].sequence.length - 1; j >= 0; j--) {
+							tableText += "<span class='i"+i+"j"+j+"'>";
+								tableText += rawJson[i].sequence[j];
+								console.log("should be a color here");
+								console.log(rawJson[i].sequence[j]);
+							tableText += "</span>";
+						};
+						tableText += "</td><button>a button goes here</button>";
+					};
+				tableText += "</tr>";
+				// rawJson[i].sequence
+
+			};
+			tableText += "</table>";
+			console.log('tableText is: ' + tableText);
+			$(tableText).appendTo('body');
+		};
+
+		$('button').click(function () {
+			alert("button click");// body...
 		});
+
+		// var buttons = document.getElementByType('button');
+		// buttons.addEventListener('click', function(){ 
+		//     console.log('CLICKED');
+		// });
+
+		// $('span').click(function () {
+		// 	// $(this).css("background-color", "purple");
+		// 	// clone = $(this);
+		// 	// clone.appendTo();
+		// 	// $(this).detach();
+		// 	// console.log("clicked on a td");
+		// 	// body...
+		// 	alert("clicked on a span");
+		// 	$(this).hide();
+		// 	$(this).parent().sibling().children($(this).attr('class')).show();
+		// });
 
 		// function function_name (argument) {
 		// 	// body...
