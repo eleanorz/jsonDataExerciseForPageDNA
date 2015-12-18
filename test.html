@@ -8,17 +8,17 @@
 			width: 25px;
 			height: 25px;
 			padding-right: 20px;
-			background-color: blue;
+			border: 1px solid gray;
 		}
 		table {
-			background-color: red;
+			border: .5px solid black;
 			width: 70%;
 		}
 	</style>
 </head>
 <body>
 
-Please open in Firefox, this will not work on Chrome due to Cross origin issues. [Or run through a local server to get around the issue.]
+<i>Please open in Firefox, this will not work on Chrome due to cross origin issues. [Or run through a local server to get around the issue.]</i>
 
 
 <!-- <h4>Moving Boxes</h4>
@@ -28,6 +28,9 @@ If your table has one non-header row, and starts like:
 <tr><th>A</th><th>B</th></tr></tr>
 <tr><td>[b][y][o][r]</td><td>&nbsp;</td></tr>
 </table> -->
+
+<h2 id="countClicksDisplay">0 clicks</h2>
+
 <button>test button here</button>
 
 You should be able to click [y] and [r], and end up with a row that looks like:
@@ -82,6 +85,7 @@ You should be able to click [y] and [r], and end up with a row that looks like:
 		function appendTable (tableRow) {
 		};
 		function createTable (rawJson) {
+			var countClicks = 0;
 			// $('body').append("<table id='mainTable'><tr><th>A</th><th>B</th></tr><tr><td><span>[b]</span><span>[o]</span><span>[y]</span><span>[r]</span></td><td><span>[b]</span><span>[o]</span><span>[y]</span><span>[r]</span></td></tr></table>");
 			// $('body').append("<table><tr><th>A</th><th>B</th></tr><tr>");
 			// for (var i = rawJson.length - 1; i >= 0; i--) {
@@ -116,7 +120,7 @@ You should be able to click [y] and [r], and end up with a row that looks like:
 								console.log(rawJson[i].sequence[j]);
 							tableText += "</span>";
 						};
-						tableText += "</td><button>a button goes here</button>";
+						tableText += "</td>";
 					};
 				tableText += "</tr>";
 				// rawJson[i].sequence
@@ -125,11 +129,20 @@ You should be able to click [y] and [r], and end up with a row that looks like:
 			tableText += "</table>";
 			console.log('tableText is: ' + tableText);
 			$(tableText).appendTo('body');
+	
+			$('span').bind("click", function () {
+
+				//strategy should be to toggle sibling spans on and off.  This could be done by toggling class names on the spans.  Originally set by incoming JSON data.
+				countClicks ++;
+				$("#countClicksDisplay").text(countClicks + " clicks");
+
+				var spanClass = this.attr('class');
+				$(span).class(spanClass).hide();
+
+				alert("something has changed");// body...
+			});
 		};
 
-		$('button').click(function () {
-			alert("button click");// body...
-		});
 
 		// var buttons = document.getElementByType('button');
 		// buttons.addEventListener('click', function(){ 
