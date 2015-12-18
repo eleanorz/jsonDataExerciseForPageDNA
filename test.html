@@ -139,9 +139,9 @@ You should be able to click [y] and [r], and end up with a row that looks like:
 				countClicks ++;
 				$("#countClicksDisplay").text(countClicks + " clicks");
 
-				spanClass = eval("'span." + $(this).attr('class') + "'");
+				spanClass = eval("'span." + $(this).attr('class').split(' ')[0] + "'");
 				console.log("spanClass = " + spanClass);
-				$(spanClass).toggle("class", "hidden");
+				$(spanClass).toggleClass("hidden");
 
 				alert("something has changed");// body...
 			});
