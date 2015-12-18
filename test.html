@@ -10,6 +10,9 @@
 			padding-right: 20px;
 			border: 1px solid gray;
 		}
+		span.hidden {
+			display: none;
+		}
 		table {
 			border: .5px solid black;
 			width: 70%;
@@ -30,8 +33,6 @@ If your table has one non-header row, and starts like:
 </table> -->
 
 <h2 id="countClicksDisplay">0 clicks</h2>
-
-<button>test button here</button>
 
 You should be able to click [y] and [r], and end up with a row that looks like:
 
@@ -112,9 +113,11 @@ You should be able to click [y] and [r], and end up with a row that looks like:
 			for (var i = rawJson.length - 1; i >= 0; i--) {
 				tableText += "<tr>";
 					for (var k = 1; k >= 0; k--) {
+						hiddenOrShownClass = "hidden";
+						if (k == 0) { hiddenOrShownClass = "shown";};
 						tableText += "<td>";
 						for (var j = rawJson[i].sequence.length - 1; j >= 0; j--) {
-							tableText += "<span class='i"+i+"j"+j+"'>";
+							tableText += "<span class='i"+i+"j"+j+" "+hiddenOrShownClass+"'>";
 								tableText += rawJson[i].sequence[j];
 								console.log("should be a color here");
 								console.log(rawJson[i].sequence[j]);
@@ -136,8 +139,9 @@ You should be able to click [y] and [r], and end up with a row that looks like:
 				countClicks ++;
 				$("#countClicksDisplay").text(countClicks + " clicks");
 
-				var spanClass = this.attr('class');
-				$(span).class(spanClass).hide();
+				spanClass = eval("'span." + $(this).attr('class') + "'");
+				console.log("spanClass = " + spanClass);
+				$(spanClass).toggle("class", "hidden");
 
 				alert("something has changed");// body...
 			});
