@@ -38,7 +38,7 @@
 <script type="text/javascript">
 	$( document ).ready(function() {
 
-		    (function tableDataRequest(){	    	
+		    function tableDataRequest(){	    	
 			    $.ajax({
 			    	url: "rows.json",
 			    	type: "GET",
@@ -58,7 +58,9 @@
 			    		console.log('The request is complete!');
 			    	}
 			    });
-		    })();
+		    };
+
+		    tableDataRequest();
 
 			function createTable (rawJson) {
 
@@ -89,8 +91,6 @@
 				$('span').bind("click", function () {
 
 					//strategy should be to toggle sibling spans on and off.  This could be done by toggling class names on the spans.  Originally set by incoming JSON data.
-					countClicks ++;
-					$("#countClicksDisplay").text(countClicks + " clicks");
 
 					spanClass = eval("'span." + $(this).attr('class').split(' ')[0] + "'");
 					console.log("spanClass = " + spanClass);
@@ -106,7 +106,16 @@
 					$('th:nth-of-type(2)').text("B (" + countSpansInColumnB + " items)");
 					// $(countSpansInColumnA).appendTo('th:first-of-type');
 				});
+
 			};
+
+			$('button').bind("click", function () {
+				//remove table text
+				$('table').text('');
+				console.log('reset button clicked');
+				//renew data request and start table over again
+				tableDataRequest();
+			});
 	});
 </script>
 </html>
