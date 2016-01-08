@@ -17,13 +17,13 @@
 		}
 		table {
 			border: .5px solid black;
-			width: 500px;
+			width: 900px;
 			margin-left: auto;
 			margin-right: auto;
 		}
-		button {
+		button, input {
 			display: block;
-			width: 150px;
+			width: 300px;
 			margin-left: auto;
 			margin-right: auto;
 		}
@@ -32,7 +32,9 @@
 <body>
 
 <i>Please open in Firefox, this will not work on Chrome due to cross origin issues. [Or run through a local server to get around the issue.]</i>
-<button>Reset</button>
+<button id="resetButton">Reset</button>
+<input id="newColumnNameInput" placeholder="New column name, start with capital letter"></input>
+<button id="submitNewColumnNameButton" disabled="true">submit</button>
 
 </body>
 <script type="text/javascript">
@@ -64,7 +66,7 @@
 
 			function createTable (rawJson) {
 
-				tableText = "<table><tr><th>A</th><th>B</th></tr><tr>";
+				tableText = "<table><thead><th>A</th><th>B</th></thead><tbody><tr>";
 				for (var i = rawJson.length - 1; i >= 0; i--) {
 					tableText += "<tr>";
 						for (var k = 1; k >= 0; k--) {
@@ -84,14 +86,12 @@
 					tableText += "</tr>";
 
 				};
-				tableText += "</table>";
+				tableText += "</tbody></table>";
 				console.log('tableText is: ' + tableText);
 				$(tableText).appendTo('body');
 		
 				$('span').bind("click", function () {
-
-					//strategy should be to toggle sibling spans on and off.  This could be done by toggling class names on the spans.  Originally set by incoming JSON data.
-
+					//toggle hidden class amongst siblings of span that was clicked
 					spanClass = eval("'span." + $(this).attr('class').split(' ')[0] + "'");
 					console.log("spanClass = " + spanClass);
 					$(spanClass).toggleClass("hidden");
@@ -102,19 +102,44 @@
 					countSpansInColumnB = $("tbody > tr > td:nth-of-type(2) > span:not('.hidden')").length;
 					console.log("number of not hidden things in second column is: " + countSpansInColumnB);
 
+					//Change column header to count of items underneath
 					$('th:first-of-type').text("A (" + countSpansInColumnA + " items)");
 					$('th:nth-of-type(2)').text("B (" + countSpansInColumnB + " items)");
-					// $(countSpansInColumnA).appendTo('th:first-of-type');
 				});
 
 			};
 
-			$('button').bind("click", function () {
+			$('#resetButton').bind("click", function () {
 				//remove table text
 				$('table').text('');
 				console.log('reset button clicked');
 				//renew data request and start table over again
 				tableDataRequest();
+			});
+
+			$('#newColumnNameInput').bind("input", function () {
+				newColumnNameInputValue = $('#newColumnNameInput').val();
+				firstInputChar = newColumnNameInputValue.charAt(0);
+				//check contents of input for capitalization
+				if ( /[A-Z]/.test( firstInputChar ) ) {
+					console.log('first letter is caps true');
+					$('#submitNewColumnNameButton').text("submit");
+					$('#submitNewColumnNameButton').css("background-color", "green");
+					$('#submitNewColumnNameButton').removeAttr('disabled');
+
+					//append a new th into the table
+					$('#submitNewColumnNameButton').bind("click", function () {
+						newHeader = '<th>' + newColumnNameInputValue + '</th>';
+						$(newHeader).appendTo('thead > tr');
+						// $('thead > tr').append(newHeader);
+					});
+
+				} else {
+					$('#submitNewColumnNameButton').css("background-color", "red");
+					//If not capitalized change button text to error
+					$('#submitNewColumnNameButton').text("First letter must be capitalized");
+					$('#submitNewColumnNameButton').attr('disabled', 'disabled');
+				}
 			});
 	});
 </script>
