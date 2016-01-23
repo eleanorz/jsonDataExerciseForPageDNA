@@ -90,15 +90,22 @@
 				console.log('tableText is: ' + tableText);
 				$(tableText).appendTo('body');
 		
-				$('body').on("click", 'span', function () {
+				$('tbody').on('click', 'span', function () {
 					//toggle hidden class amongst siblings of span that was clicked
 					spanClass = eval("'." + $(this).attr('class').split(' ')[0] + "'");
 					// formattedSpanClass = "(" + spanClass + ")";
 					console.log("spanClass = " + spanClass);
 
-					//shift clicks to the right:
 					$(this).addClass('hidden');
-					$(this).parent().next().find(spanClass).removeClass("hidden");
+
+					//Check if last column
+					if ($(this).parent().is( $(this).parent().parent().find('td').last() ) ) {
+						console.log('this is the last one');
+						$('tbody').find(spanClass).first().removeClass("hidden");
+					}else{
+						console.log("this is not the last of type");
+						$(this).parent().next().find(spanClass).removeClass("hidden");
+					}
 
 					//Count elements under each header:
 					countSpansInColumn = function(i){
